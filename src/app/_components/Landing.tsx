@@ -90,7 +90,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
         </p>
         <div className="flex justify-between items-center">
           <span className="text-lg font-bold">
-            Rating: {String(movie.averageRating)}/10
+            Rating: {movie.averageRating?`${movie.averageRating.toFixed(2)}/10`:"No Reviews"}
           </span>
           <div className="space-x-2">
             <Link href={`/edit/movie/${movie.id}`}>

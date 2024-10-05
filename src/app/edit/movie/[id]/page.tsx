@@ -1,9 +1,9 @@
-import { updateMovie } from "@/app/actions";
 import prisma from "@/lib/prisma/prismaClient";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import { useFormState } from "react-dom";
 import EditMovieForm from "./_components/EditMovieForm";
+
+export const dynamic = 'force-dynamic'
 
 export default async function EditMovie({
   params,

@@ -2,9 +2,11 @@
 import { useFormState, useFormStatus } from "react-dom";
 import { addMovie } from "@/app/actions";
 import Link from "next/link";
+import { useState } from "react";
 export default function AddMovieForm() {
   const [state, addMovieAction] = useFormState(addMovie, null);
-  if (state?.success) return <SuccessMovieAddModel />;
+  const [modelClosed, setModelClosed] = useState(false);
+  if (state?.success && !modelClosed) return <SuccessMovieAddModel setModelClosed={setModelClosed} />;
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md !text-black">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Add new movie</h2>
@@ -43,16 +45,17 @@ export default function AddMovieForm() {
             <p className="text-red-500">{state.releaseDate}</p>
           )}
         </div>
-        <AddMovieFormButton />
+        <AddMovieFormButton setModelClosed={setModelClosed} />
       </form>
     </div>
   );
 }
 
-const AddMovieFormButton = () => {
+const AddMovieFormButton = ({setModelClosed}: {setModelClosed: (value: boolean) => void}) => {
   const { pending } = useFormStatus();
   return (
     <button
+      onClick={() => setModelClosed(false)}
       disabled={pending}
       type="submit"
       className="w-full px-4 py-2 bg-[#6559f5] text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-[#6559f5] focus:ring-offset-2 transition-colors"
@@ -62,7 +65,7 @@ const AddMovieFormButton = () => {
   );
 };
 
-const SuccessMovieAddModel = () => {
+const SuccessMovieAddModel = ({setModelClosed}: {setModelClosed: (value: boolean) => void}) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full">
@@ -78,14 +81,15 @@ const SuccessMovieAddModel = () => {
               Go to Home
             </button>
           </Link>
-          <Link href="/add-movie">
+         
             <button
+              onClick={() => setModelClosed(true)}
               type="button"
               className="w-full px-4 py-2 border border-[#6559f5] text-[#6559f5] rounded-md hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-[#6559f5] focus:ring-offset-2 transition-colors"
             >
               Add New Movie
             </button>
-          </Link>
+       
         </div>
       </div>
     </div>
