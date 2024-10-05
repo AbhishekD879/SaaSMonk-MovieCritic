@@ -15,9 +15,16 @@ export default Header;
 
 const HeaderLogo = () => {
   return (
-    <Link href="/">
+   <div className="flex items-center space-x-4">
+     <Link href="/">
       <h1 className="text-2xl font-bold text-gray-900">MOVIECRITIC</h1>
     </Link>
+    <Link href="/all-reviews">
+      <button className="px-4 py-2 border border-[#6559f5] text-[#6559f5] rounded-md hover:bg-purple-50 transition-colors">
+        All Reviews
+      </button>
+    </Link>
+   </div>
   );
 };
 const HeaderRightCta = () => {

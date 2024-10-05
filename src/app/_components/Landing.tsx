@@ -85,7 +85,7 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
     <Link href={`/movie/${movie.id}`}>
       <div className="bg-[#dfdefe] rounded-lg shadow-md p-6 !text-black">
         <h3 className="text-xl font-semibold mb-2">{movie.name}</h3>
-        <p className="text-gray-600 mb-4">
+        <p className="text-gray-600 mb-4 italic">
           Released: {new Date(movie.releaseDate).toLocaleDateString()}
         </p>
         <div className="flex justify-between items-center">

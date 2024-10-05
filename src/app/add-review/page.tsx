@@ -95,15 +95,14 @@ const SuccessReviewAddModel = ({
               Go to Home
             </button>
           </Link>
-         
-            <button
+
+          <button
             onAbort={() => setModelClosed(true)}
-              type="button"
-              className="w-full px-4 py-2 border border-[#6559f5] text-[#6559f5] rounded-md hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-[#6559f5] focus:ring-offset-2 transition-colors"
-            >
-              Add New Review
-            </button>
-         
+            type="button"
+            className="w-full px-4 py-2 border border-[#6559f5] text-[#6559f5] rounded-md hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-[#6559f5] focus:ring-offset-2 transition-colors"
+          >
+            Add New Review
+          </button>
         </div>
       </div>
     </div>

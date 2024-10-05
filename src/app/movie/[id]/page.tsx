@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma/prismaClient";
-import { PencilIcon, TrashIcon } from "lucide-react";
+import { PencilIcon } from "lucide-react";
 import DeleteReviewForm from "./_components/DeleteReviewForm";
 import Link from "next/link";
 
@@ -18,7 +18,7 @@ async function Movie({ params }: { params: { id: string } }) {
   }
 
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-gray-400">
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-4xl font-bold text-gray-900">{data.name}</h2>
         <span className="text-4xl font-bold text-[#6559f5]">
@@ -29,7 +29,10 @@ async function Movie({ params }: { params: { id: string } }) {
       <div className="space-y-6">
         {data.reviews.length > 0 ? (
           data.reviews.map((review) => (
-            <div key={review.id} className="bg-white rounded-lg shadow-md p-6">
+            <div
+              key={review.id}
+              className="bg-white rounded-lg shadow-md p-6 border-gray-400 border-[4px]"
+            >
               <div className="flex justify-between items-start mb-4">
                 <p className="text-gray-800">{review.comments}</p>
                 <span className="text-2xl font-bold text-[#6559f5]">
@@ -37,8 +40,8 @@ async function Movie({ params }: { params: { id: string } }) {
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-gray-600">
-                  {review.reviewer || "Anonymous"}
+                <span className="text-gray-600 italic">
+                  By: {review.reviewer || "Anonymous"}
                 </span>
                 <div className="space-x-2 flex items-center">
                   <Link
