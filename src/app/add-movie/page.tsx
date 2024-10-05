@@ -6,7 +6,8 @@ import { useState } from "react";
 export default function AddMovieForm() {
   const [state, addMovieAction] = useFormState(addMovie, null);
   const [modelClosed, setModelClosed] = useState(false);
-  if (state?.success && !modelClosed) return <SuccessMovieAddModel setModelClosed={setModelClosed} />;
+  if (state?.success && !modelClosed)
+    return <SuccessMovieAddModel setModelClosed={setModelClosed} />;
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md !text-black">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">Add new movie</h2>
@@ -51,7 +52,11 @@ export default function AddMovieForm() {
   );
 }
 
-const AddMovieFormButton = ({setModelClosed}: {setModelClosed: (value: boolean) => void}) => {
+const AddMovieFormButton = ({
+  setModelClosed,
+}: {
+  setModelClosed: (value: boolean) => void;
+}) => {
   const { pending } = useFormStatus();
   return (
     <button
@@ -65,7 +70,11 @@ const AddMovieFormButton = ({setModelClosed}: {setModelClosed: (value: boolean) 
   );
 };
 
-const SuccessMovieAddModel = ({setModelClosed}: {setModelClosed: (value: boolean) => void}) => {
+const SuccessMovieAddModel = ({
+  setModelClosed,
+}: {
+  setModelClosed: (value: boolean) => void;
+}) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full">
@@ -81,15 +90,14 @@ const SuccessMovieAddModel = ({setModelClosed}: {setModelClosed: (value: boolean
               Go to Home
             </button>
           </Link>
-         
-            <button
-              onClick={() => setModelClosed(true)}
-              type="button"
-              className="w-full px-4 py-2 border border-[#6559f5] text-[#6559f5] rounded-md hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-[#6559f5] focus:ring-offset-2 transition-colors"
-            >
-              Add New Movie
-            </button>
-       
+
+          <button
+            onClick={() => setModelClosed(true)}
+            type="button"
+            className="w-full px-4 py-2 border border-[#6559f5] text-[#6559f5] rounded-md hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-[#6559f5] focus:ring-offset-2 transition-colors"
+          >
+            Add New Movie
+          </button>
         </div>
       </div>
     </div>
