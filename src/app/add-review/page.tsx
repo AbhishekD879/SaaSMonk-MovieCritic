@@ -3,10 +3,13 @@ import MovieSelect from "./_components/MovieSelect";
 import { useFormState } from "react-dom";
 import { addReview } from "../actions";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function AddReviewForm() {
   const [state, addReviewAction] = useFormState(addReview, null);
-  if (state?.success) return <SuccessReviewAddModel />;
+  const [modelClosed, setModelClosed] = useState(false);
+  if (state?.success && !modelClosed)
+    return <SuccessReviewAddModel setModelClosed={setModelClosed} />;
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md !text-black">
@@ -61,6 +64,7 @@ export default function AddReviewForm() {
           ></textarea>
         </div>
         <button
+          onClick={() => setModelClosed(false)}
           type="submit"
           className="w-full px-4 py-2 bg-[#6559f5] text-white rounded-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-[#6559f5] focus:ring-offset-2 transition-colors"
         >
@@ -71,7 +75,11 @@ export default function AddReviewForm() {
   );
 }
 
-const SuccessReviewAddModel = () => {
+const SuccessReviewAddModel = ({
+  setModelClosed,
+}: {
+  setModelClosed: (value: boolean) => void;
+}) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full">
@@ -87,14 +95,15 @@ const SuccessReviewAddModel = () => {
               Go to Home
             </button>
           </Link>
-          <Link href="/add-movie">
+         
             <button
+            onAbort={() => setModelClosed(true)}
               type="button"
               className="w-full px-4 py-2 border border-[#6559f5] text-[#6559f5] rounded-md hover:bg-purple-50 focus:outline-none focus:ring-2 focus:ring-[#6559f5] focus:ring-offset-2 transition-colors"
             >
               Add New Review
             </button>
-          </Link>
+         
         </div>
       </div>
     </div>
