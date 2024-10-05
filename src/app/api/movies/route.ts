@@ -13,6 +13,5 @@ export async function GET(req: Request, res: Response) {
     skip: (pageNumber - 1) * pageSize,
     take: pageSize,
   });
-  console.log(movies);
   return NextResponse.json(movies);
 }
